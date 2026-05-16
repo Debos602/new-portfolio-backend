@@ -9,8 +9,18 @@ const app: Application = express();
 
 
 
+// Support a comma-separated list in FRONTEND_URLS or single FRONTEND_URL
+const rawFrontends = (process.env.FRONTEND_URLS || process.env.FRONTEND_URL || '');
+const allowedOrigins = rawFrontends.split(',').map(s => s.trim()).filter(Boolean);
+
 const corsOptions = {
-  origin: process.env.FRONTEND_URL,
+  origin: (origin: string | undefined, callback: any) => {
+    // allow requests with no origin (e.g., curl, server-to-server)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.length === 0) return callback(null, true); // no restriction configured
+    if (allowedOrigins.includes(origin)) return callback(null, true);
+    return callback(new Error('Not allowed by CORS'));
+  },
   credentials: true, // Allow credentials (cookies, auth headers)
 };
 
