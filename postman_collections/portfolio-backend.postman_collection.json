@@ -1,0 +1,244 @@
+{
+  "info": {
+    "name": "Portfolio Backend - APIs",
+    "_postman_id": "portfolio-backend-collection",
+    "description": "Auto-generated Postman collection for portfolio backend APIs (prefix /api)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth - Sign Up",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Jane Doe\",\n  \"email\": \"jane@example.com\",\n  \"password\": \"password123\",\n  \"confirmPassword\": \"password123\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/auth/signup",
+          "host": ["{{baseUrl}}"],
+          "path": ["api","auth","signup"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Auth - Sign In",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"jane@example.com\",\n  \"password\": \"password123\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": { "raw": "{{baseUrl}}/api/auth/signin", "host": ["{{baseUrl}}"], "path": ["api","auth","signin"] }
+      },
+      "response": []
+    },
+    {
+      "name": "Auth - Forget Password",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"email\": \"jane@example.com\"\n}", "options": { "raw": { "language": "json" } } },
+        "url": { "raw": "{{baseUrl}}/api/auth/forget-password", "host": ["{{baseUrl}}"], "path": ["api","auth","forget-password"] }
+      },
+      "response": []
+    },
+    {
+      "name": "Auth - Reset Password",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{resetToken}}", "disabled": true }
+        ],
+        "body": { "mode": "raw", "raw": "{\n  \"password\": \"newPassword123\",\n  \"confirmPassword\": \"newPassword123\"\n}", "options": { "raw": { "language": "json" } } },
+        "url": { "raw": "{{baseUrl}}/api/auth/reset-password", "host": ["{{baseUrl}}"], "path": ["api","auth","reset-password"] }
+      },
+      "response": []
+    },
+    {
+      "name": "Auth - Refresh Token (cookie)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": { "raw": "{{baseUrl}}/api/auth/refresh-token", "host": ["{{baseUrl}}"], "path": ["api","auth","refresh-token"] }
+      },
+      "response": []
+    },
+    {
+      "name": "Stats - Get",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "{{baseUrl}}/api/stats", "host": ["{{baseUrl}}"], "path": ["api","stats"] }
+      },
+      "response": []
+    },
+    {
+      "name": "Stats - Create (admin)",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ],
+        "body": { "mode": "raw", "raw": "{\n  \"codeQuality\": \"A+\",\n  \"commitsPerYear\": \"2.4k\",\n  \"projects\": 42,\n  \"uptime\": \"99.9%\"\n}", "options": { "raw": { "language": "json" } } },
+        "url": { "raw": "{{baseUrl}}/api/stats", "host": ["{{baseUrl}}"], "path": ["api","stats"] }
+      },
+      "response": []
+    },
+    {
+      "name": "Stats - Update (admin)",
+      "request": {
+        "method": "PATCH",
+        "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ],
+        "body": { "mode": "raw", "raw": "{\n  \"projects\": 43\n}", "options": { "raw": { "language": "json" } } },
+        "url": { "raw": "{{baseUrl}}/api/stats", "host": ["{{baseUrl}}"], "path": ["api","stats"] }
+      },
+      "response": []
+    },
+    {
+      "name": "Skills - Create Skill (admin)",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ],
+        "body": { "mode": "raw", "raw": "{\n  \"category\": \"framework\",\n  \"name\": \"React\",\n  \"proficiency\": 85\n}", "options": { "raw": { "language": "json" } } },
+        "url": { "raw": "{{baseUrl}}/api/skills", "host": ["{{baseUrl}}"], "path": ["api","skills"] }
+      },
+      "response": []
+    },
+    {
+      "name": "Skills - Get All Skills",
+      "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/api/skills", "host": ["{{baseUrl}}"], "path": ["api","skills"] } },
+      "response": []
+    },
+    {
+      "name": "Skills - Delete Skill (admin)",
+      "request": { "method": "DELETE", "header": [ { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{baseUrl}}/api/delete-skills/:_id", "host": ["{{baseUrl}}"], "path": ["api","delete-skills",":_id"] } },
+      "response": []
+    },
+    {
+      "name": "Skills - Update Skill (admin)",
+      "request": { "method": "PATCH", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "body": { "mode": "raw", "raw": "{\n  \"_id\": \"<skillId>\",\n  \"name\": \"React Updated\"\n}", "options": { "raw": { "language": "json" } } }, "url": { "raw": "{{baseUrl}}/api/update-skills", "host": ["{{baseUrl}}"], "path": ["api","update-skills"] } },
+      "response": []
+    },
+    {
+      "name": "Blogs - Create Blog (admin, multipart)",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "Authorization", "value": "Bearer {{token}}" } ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            { "key": "title", "type": "text", "value": "My new blog" },
+            { "key": "description", "type": "text", "value": "Short description" },
+            { "key": "image", "type": "file", "src": [] }
+          ]
+        },
+        "url": { "raw": "{{baseUrl}}/api/blogs", "host": ["{{baseUrl}}"], "path": ["api","blogs"] }
+      },
+      "response": []
+    },
+    {
+      "name": "Blogs - Get Blogs",
+      "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/api/blogs", "host": ["{{baseUrl}}"], "path": ["api","blogs"] } },
+      "response": []
+    },
+    {
+      "name": "Blogs - Update Blog (admin, multipart)",
+      "request": {
+        "method": "PATCH",
+        "header": [ { "key": "Authorization", "value": "Bearer {{token}}" } ],
+        "body": { "mode": "formdata", "formdata": [ { "key": "_id", "type": "text", "value": "<blogId>" }, { "key": "title", "type": "text", "value": "Updated title" }, { "key": "image", "type": "file", "src": [] } ] },
+        "url": { "raw": "{{baseUrl}}/api/update-blogs", "host": ["{{baseUrl}}"], "path": ["api","update-blogs"] }
+      },
+      "response": []
+    },
+    {
+      "name": "Blogs - Delete Blog (admin)",
+      "request": { "method": "DELETE", "header": [ { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{baseUrl}}/api/delete-blogs/:_id", "host": ["{{baseUrl}}"], "path": ["api","delete-blogs",":_id"] } },
+      "response": []
+    },
+    {
+      "name": "Experience - Get All",
+      "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/api/experience", "host": ["{{baseUrl}}"], "path": ["api","experience"] } },
+      "response": []
+    },
+    {
+      "name": "Experience - Get Single",
+      "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/api/experience/:id", "host": ["{{baseUrl}}"], "path": ["api","experience",":id"] } },
+      "response": []
+    },
+    {
+      "name": "Experience - Create (admin)",
+      "request": { "method": "POST", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "body": { "mode": "raw", "raw": "{\n  \"jobTitle\": \"Senior Developer\",\n  \"company\": \"Acme Corp\",\n  \"startDate\": \"2020-01-01\",\n  \"isPresent\": false,\n  \"responsibilities\": [{ \"details\": \"Led team\" }],\n  \"technologies\": [\"Node.js\", \"MongoDB\"]\n}", "options": { "raw": { "language": "json" } } }, "url": { "raw": "{{baseUrl}}/api/experience", "host": ["{{baseUrl}}"], "path": ["api","experience"] } },
+      "response": []
+    },
+    {
+      "name": "Experience - Update (admin)",
+      "request": { "method": "PATCH", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "body": { "mode": "raw", "raw": "{\n  \"jobTitle\": \"Updated Title\",\n  \"company\": \"New Company\"\n}", "options": { "raw": { "language": "json" } } }, "url": { "raw": "{{baseUrl}}/api/experience/:id", "host": ["{{baseUrl}}"], "path": ["api","experience",":id"] } },
+      "response": []
+    },
+    {
+      "name": "Experience - Delete (admin)",
+      "request": { "method": "DELETE", "header": [ { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{baseUrl}}/api/experience/:id", "host": ["{{baseUrl}}"], "path": ["api","experience",":id"] } },
+      "response": []
+    },
+    {
+      "name": "Projects - Create (admin, multipart)",
+      "request": { "method": "POST", "header": [ { "key": "Authorization", "value": "Bearer {{token}}" } ], "body": { "mode": "formdata", "formdata": [ { "key": "title", "type": "text", "value": "My Project" }, { "key": "description", "type": "text", "value": "Short description" }, { "key": "image", "type": "file", "src": [] } ] }, "url": { "raw": "{{baseUrl}}/api/project", "host": ["{{baseUrl}}"], "path": ["api","project"] } },
+      "response": []
+    },
+    {
+      "name": "Projects - Get All",
+      "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/api/project", "host": ["{{baseUrl}}"], "path": ["api","project"] } },
+      "response": []
+    },
+    {
+      "name": "Projects - Update (admin, multipart)",
+      "request": { "method": "PATCH", "header": [ { "key": "Authorization", "value": "Bearer {{token}}" } ], "body": { "mode": "formdata", "formdata": [ { "key": "_id", "type": "text", "value": "<projectId>" }, { "key": "title", "type": "text", "value": "Updated Project" }, { "key": "image", "type": "file", "src": [] } ] }, "url": { "raw": "{{baseUrl}}/api/update-project", "host": ["{{baseUrl}}"], "path": ["api","update-project"] } },
+      "response": []
+    },
+    {
+      "name": "Projects - Delete (admin)",
+      "request": { "method": "DELETE", "header": [ { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{baseUrl}}/api/delete-project/:_id", "host": ["{{baseUrl}}"], "path": ["api","delete-project",":_id"] } },
+      "response": []
+    },
+    {
+      "name": "Users - Get All (admin)",
+      "request": { "method": "GET", "header": [ { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{baseUrl}}/api/auth/all-users", "host": ["{{baseUrl}}"], "path": ["api","auth","all-users"] } },
+      "response": []
+    },
+    {
+      "name": "Users - Get Admin (admin)",
+      "request": { "method": "GET", "header": [ { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{baseUrl}}/api/auth/admin", "host": ["{{baseUrl}}"], "path": ["api","auth","admin"] } },
+      "response": []
+    },
+    {
+      "name": "Users - Get User (user)",
+      "request": { "method": "GET", "header": [ { "key": "Authorization", "value": "Bearer {{token}}" } ], "url": { "raw": "{{baseUrl}}/api/auth/user", "host": ["{{baseUrl}}"], "path": ["api","auth","user"] } },
+      "response": []
+    },
+    {
+      "name": "Users - Update User (user)",
+      "request": { "method": "PUT", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "body": { "mode": "raw", "raw": "{\n  \"name\": \"Updated Name\",\n  \"phone\": \"1234567890\"\n}", "options": { "raw": { "language": "json" } } }, "url": { "raw": "{{baseUrl}}/api/auth/update-user", "host": ["{{baseUrl}}"], "path": ["api","auth","update-user"] } },
+      "response": []
+    },
+    {
+      "name": "Users - Update Role (admin)",
+      "request": { "method": "PUT", "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{token}}" } ], "body": { "mode": "raw", "raw": "{\n  \"role\": \"admin\"\n}", "options": { "raw": { "language": "json" } } }, "url": { "raw": "{{baseUrl}}/api/auth/update-role/:userId", "host": ["{{baseUrl}}"], "path": ["api","auth","update-role",":userId"] } },
+      "response": []
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000" },
+    { "key": "token", "value": "" },
+    { "key": "resetToken", "value": "" }
+  ]
+}
